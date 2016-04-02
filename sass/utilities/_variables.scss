@@ -3,7 +3,7 @@
 $default-font: "Lato";
 $common-size: 150px;
 $body-min-width: 1000px;
-$theme-color: #b4d35f; // 2nd best option color #b4d35f, #3399ff, #79b9b2
+$theme-color: #006693; // 2nd best option color #b4d35f, #3399ff, #79b9b2
 $light-theme-color: lighten($theme-color, 10%);
 $light-theme-color-2: lighten($theme-color, 35%);
 $dark-theme-color: darken($theme-color, 10%);
@@ -16,6 +16,7 @@ $invalid-color: #ff6666;
 $light-invalid-color: lighten($invalid-color, 10%);
 $dark-invalid-color: darken($invalid-color, 10%);
 $global-border-radius: 2px;
+$arrow-color: $theme-color;
 
 // General CSS
 .area-container{
@@ -70,6 +71,10 @@ $global-border-radius: 2px;
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
           box-sizing: border-box;
+}
+
+.hide-block{
+  display: none !important;
 }
 
 .show-block{

@@ -1,6 +1,24 @@
+var touchSize = 100;
+
 $( window ).ready(function() {
-  navListener();
+  // navListener();
+  touchEffect();
 });
+
+function touchEffect(){
+  $(window).mousedown(function (e) {
+    var posX = (e.pageX - ( touchSize/2) );
+    var posY = (e.pageY - ( touchSize/2) );
+    var $elem = $('<div class="touch-effect"></div>');
+    $( "html" ).append($elem);
+    var styles = {'left':posX, 'top':posY};
+    $elem.css(styles);
+
+    setTimeout(function(){
+      $elem.remove();
+    }, 300);
+  });
+}
 
 function navListener(){
   $( ".nav-bar li" ).click(function(e) {

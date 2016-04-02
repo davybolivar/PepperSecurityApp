@@ -9,125 +9,166 @@ html, body{
   font-family: $default-font;
 }
 
-body{
+.settings-page{
+  width: 100%;
+  height: 100%;
+  background-color: $light-border-color;
+  position: relative;
   display: flex;
   flex-direction: column;
 }
 
-.card-container{
+// Slider content
+.slider{
   width: 100%;
   height: 100%;
-}
-
-.nav-bar{
-  @extend .center-block-elem;
-  width: inherit;
-  min-height: $common-size;
-  padding-top: 30px;
-  padding-bottom: 30px;
-  display: flex;
+  background-color: $border-color;
   position: relative;
+  overflow: hidden;
 
-  &:before{
-    @extend .center-inline-elem;
-    content: "";
-    width: 0px;
-    height: 8px;
-    background-color: $theme-color;
-    position: absolute;
-    left: calc(50% - (1100px / 2));
-    top: calc(50% - (8px / 2));
-
-    -webkit-transition: width .3s ease-in-out;
-       -moz-transition: width .3s ease-in-out;
-         -o-transition: width .3s ease-in-out;
-            transition: width .3s ease-in-out;
-  }
-
-  & li{
-    @extend .border-box;
-    @extend .center-inline-elem;
+  & .arrow{
     width: $common-size;
-    height: $common-size;
-    color: black;
-    background-color: white;
-    border: solid 8px $dark-border-color;
-    border-radius: 50%;
-    position: relative;
+    height: 100%;
+    background-color: transparent;
+    position: absolute;
+    top: 0;
 
     &:before{
-      @extend .center-block-elem;
-      @extend .google-icons;
-      content: "";
-      color: $dark-border-color;
-      font-size: 90px;
+      @extend .border-box;
+      content: '';
+      width: calc(#{$common-size} / 2);
+      height: calc(#{$common-size} / 2);
+      background-color: transparent;
+      position: absolute;
+      transform: rotate(45deg);
+      top: calc(50% - (#{$common-size} / 2) / 2);
+      z-index: 1;
     }
 
-    &:not(:first-child){
-      margin-left: 10%;
+    &:after{
+      content: '';
+      width: 100%;
+      height: 100%;
+      background-color: $light-border-color;
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: .5;
+
+      -webkit-transition: opacity .1s ease-in-out, transform .1s ease-in-out;
+         -moz-transition: opacity .1s ease-in-out, transform .1s ease-in-out;
+           -o-transition: opacity .1s ease-in-out, transform .1s ease-in-out;
+              transition: opacity .1s ease-in-out, transform .1s ease-in-out;
     }
 
-    &:hover{
-      // background-color: blue;
+    &:active:after{
+      opacity: 1;
+    }
+  }
+
+  & .slide-left{
+    left: 0;
+    &:before{
+      border-left: solid 8px $arrow-color;
+      border-bottom: solid 8px $arrow-color;
+      left: calc(50% - (#{$common-size} / 2) / 4);
+
+      -webkit-transition: transform .1s ease-in-out;
+         -moz-transition: transform .1s ease-in-out;
+           -o-transition: transform .1s ease-in-out;
+              transition: transform .1s ease-in-out;
+    }
+
+    &:after{
+      transform: translateX(-($common-size / 2));
+    }
+
+    &:active{
+      &:before{
+        transform: translateX(-20px) rotate(45deg);
+      }
+      &:after{
+        transform: translateX(0);
+      }
+    }
+  }
+
+  & .slide-right{
+    right: 0;
+    &:before{
+      border-right: solid 8px $arrow-color;
+      border-top: solid 8px $arrow-color;
+      right: calc(50% - (#{$common-size} / 2) / 4);
+
+      -webkit-transition: transform .1s ease-in-out;
+         -moz-transition: transform .1s ease-in-out;
+           -o-transition: transform .1s ease-in-out;
+              transition: transform .1s ease-in-out;
+    }
+
+    &:after{
+      transform: translateX($common-size / 2);
+    }
+
+    &:active{
+      &:before{
+        transform: translateX(20px) rotate(45deg);
+      }
+      &:after{
+        transform: translateX(0);
+      }
     }
   }
 }
 
-.page2{
-  & .nav-bar:before{
-    width: 322px;
-  }
+.slider-content{
+  width: calc(100% - (#{$common-size * 2}));
+  height: 100%;
+  margin: 0 auto;
+  background-color: $light-border-color;
 }
 
-.page3{
-  & .nav-bar:before{
-    width: 644px;
-  }
+// Navigation bar content
+.tab{
+  width: 100%;
+  height: $common-size;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  background-color: gray;
+  position: relative;
 }
 
-.page4{
-  & .nav-bar:before{
-    width: 966px;
-  }
+// Effects
+.touch-effect{
+  width: 100px;
+  height: 100px;
+  background-color: $dark-border-color;
+  border-radius: 50%;
+  opacity: .5;
+  z-index: 1;
+  position: absolute;
+  pointer-events: none;
+
+  animation-name: TOUCH-ANIMATION;
+  animation-duration: .3s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
 }
 
-// Navigation elements
-#detect-field{
-  &.current-nav{
-
-  }
-
-  &:before{
-    content: "\E32A";
-  }
+@-webkit-keyframes TOUCH-ANIMATION {
+  0%   { opacity: .5; transform: scale(1,1); }
+  100% { opacity: 0;transform: scale(5,5); }
 }
-
-#sound-field{
-  &.current-nav{
-
-  }
-
-  &:before{
-    content: "\E003";
-  }
+@-moz-keyframes TOUCH-ANIMATION {
+  0%   { opacity: .5; transform: scale(1,1); }
+  100% { opacity: 0;transform: scale(5,5); }
 }
-
-#email-field{
-  &.current-nav{
-
-  }
-
-  &:before{
-    content: "\E0BE";
-  }
+@-o-keyframes TOUCH-ANIMATION {
+  0%   { opacity: .5; transform: scale(1,1); }
+  100% { opacity: 0;transform: scale(5,5); }
 }
-
-#timer-field{
-  &.current-nav{
-
-  }
-
-  &:before{
-    content: "\E855";
-  }
+@keyframes TOUCH-ANIMATION {
+  0%   { opacity: .5; transform: scale(1,1); }
+  100% { opacity: 0;transform: scale(5,5); }
 }
