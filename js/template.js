@@ -1,7 +1,9 @@
 var touchSize = 100;
+var formList = ['step1','step2','step3','step4'];
 
 $( window ).ready(function() {
   // navListener();
+  sliderArrow();
   touchEffect();
 });
 
@@ -43,4 +45,52 @@ function navListener(){
         break;
     }
   });
+}
+
+function sliderArrow(){
+  $( ".slider .arrow" ).click(function(e) {
+    var $arrow = $( this );
+    var $pageElem = $( "#settings-page" );
+    var currentIndex = getIndexOfVal(formList,$pageElem.attr("class"))
+
+    if($arrow.hasClass("slide-left")){
+      if(currentIndex >  0){
+        $pageElem.removeClass();
+        $pageElem.addClass(formList[currentIndex - 1]);
+      }
+
+      if( currentIndex <= 1){
+        $( ".slide-left" ).addClass("hide-arrow");
+      }
+
+      if( currentIndex <= (formList.length - 1)){
+        $( ".slide-right" ).removeClass("hide-arrow");
+      }
+    }
+    else if($arrow.hasClass("slide-right")){
+      if(currentIndex <  (formList.length - 1)){
+        $pageElem.removeClass();
+        $pageElem.addClass(formList[currentIndex + 1]);
+      }
+
+      if( currentIndex == (formList.length - 2)){
+        $( ".slide-right" ).addClass("hide-arrow");
+      }
+
+      if( currentIndex >= 0){
+        $( ".slide-left" ).removeClass("hide-arrow");
+      }
+    }
+  });
+}
+
+function getIndexOfVal(array, target){
+  var index = -1;
+  for(var ctr = 0, temp = ''; temp != target && ctr < array.length; ctr++){
+    temp = array[ctr];
+    if(temp == target){
+      index = ctr;
+    }
+  }
+  return index;
 }

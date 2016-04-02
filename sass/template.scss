@@ -9,10 +9,9 @@ html, body{
   font-family: $default-font;
 }
 
-.settings-page{
+#settings-page{
   width: 100%;
   height: 100%;
-  background-color: $light-border-color;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -22,8 +21,8 @@ html, body{
 .slider{
   width: 100%;
   height: 100%;
-  background-color: $border-color;
   position: relative;
+  display: flex;
   overflow: hidden;
 
   & .arrow{
@@ -32,6 +31,7 @@ html, body{
     background-color: transparent;
     position: absolute;
     top: 0;
+    z-index: 1;
 
     &:before{
       @extend .border-box;
@@ -49,11 +49,9 @@ html, body{
       content: '';
       width: 100%;
       height: 100%;
-      background-color: $light-border-color;
       position: absolute;
       left: 0;
       top: 0;
-      opacity: .5;
 
       -webkit-transition: opacity .1s ease-in-out, transform .1s ease-in-out;
          -moz-transition: opacity .1s ease-in-out, transform .1s ease-in-out;
@@ -68,23 +66,37 @@ html, body{
 
   & .slide-left{
     left: 0;
+
+    -webkit-transition: opacity .5s ease-in-out;
+       -moz-transition: opacity .5s ease-in-out;
+         -o-transition: opacity .5s ease-in-out;
+            transition: opacity .5s ease-in-out;
+
+    &.hide-arrow{
+      opacity: 0;
+      pointer-events: none;
+    }
+
     &:before{
       border-left: solid 8px $arrow-color;
       border-bottom: solid 8px $arrow-color;
       left: calc(50% - (#{$common-size} / 2) / 4);
+      z-index: 1;
 
-      -webkit-transition: transform .1s ease-in-out;
-         -moz-transition: transform .1s ease-in-out;
-           -o-transition: transform .1s ease-in-out;
-              transition: transform .1s ease-in-out;
+      -webkit-transition: transform .1s ease-in-out, border-color .1s ease-in-out;
+         -moz-transition: transform .1s ease-in-out, border-color .1s ease-in-out;
+           -o-transition: transform .1s ease-in-out, border-color .1s ease-in-out;
+              transition: transform .1s ease-in-out, border-color .1s ease-in-out;
     }
 
     &:after{
+      @include gradient-left($dark-border-color);
       transform: translateX(-($common-size / 2));
     }
 
     &:active{
       &:before{
+        border-color: $light-theme-color;
         transform: translateX(-20px) rotate(45deg);
       }
       &:after{
@@ -95,10 +107,23 @@ html, body{
 
   & .slide-right{
     right: 0;
+    opacity: 1;
+
+    -webkit-transition: opacity .5s ease-in-out;
+       -moz-transition: opacity .5s ease-in-out;
+         -o-transition: opacity .5s ease-in-out;
+            transition: opacity .5s ease-in-out;
+
+    &.hide-arrow{
+      opacity: 0;
+      pointer-events: none;
+    }
+
     &:before{
       border-right: solid 8px $arrow-color;
       border-top: solid 8px $arrow-color;
       right: calc(50% - (#{$common-size} / 2) / 4);
+      z-index: 1;
 
       -webkit-transition: transform .1s ease-in-out;
          -moz-transition: transform .1s ease-in-out;
@@ -107,11 +132,13 @@ html, body{
     }
 
     &:after{
+      @include gradient-right($dark-border-color);
       transform: translateX($common-size / 2);
     }
 
     &:active{
       &:before{
+        border-color: $light-theme-color;
         transform: translateX(20px) rotate(45deg);
       }
       &:after{
@@ -122,10 +149,31 @@ html, body{
 }
 
 .slider-content{
+  @extend .center-block-elem;
   width: calc(100% - (#{$common-size * 2}));
   height: 100%;
-  margin: 0 auto;
-  background-color: $light-border-color;
+  position: absolute;
+  left: calc(50% - ((100% - (#{$common-size * 2})) / 2));
+
+  & ul{
+    width: 80%;
+    height: 100%;
+    position: relative;
+    white-space: nowrap;
+
+    -webkit-transition: transform .8s cubic-bezier(.17,.67,.64,1.4);
+       -moz-transition: transform .8s cubic-bezier(.17,.67,.64,1.4);
+         -o-transition: transform .8s cubic-bezier(.17,.67,.64,1.4);
+            transition: transform .8s cubic-bezier(.17,.67,.64,1.4);
+
+    & li{
+      @extend .center-inline-elem;
+      width: 100%;
+      height:100%;
+      display: inline-block;
+      position: relative;
+    }
+  }
 }
 
 // Navigation bar content
@@ -135,6 +183,45 @@ html, body{
   margin-top: 30px;
   margin-bottom: 30px;
   background-color: gray;
+  position: relative;
+}
+
+// Pages
+#settings-page{
+  &.step1{
+    & .slider-content ul{
+      transform: translateX(-(100% * 0));
+    }
+  }
+
+  &.step2{
+    & .slider-content ul{
+      transform: translateX(-(100% * 1));
+    }
+  }
+
+  &.step3{
+    & .slider-content ul{
+      transform: translateX(-(100% * 2));
+    }
+  }
+
+  &.step4{
+    & .slider-content ul{
+      transform: translateX(-(100% * 3));
+    }
+  }
+}
+
+// Form Cards
+.card-form{
+  @extend .center-block-elem;
+  width: 90%;
+  height: 100%;
+  color: black;
+  background-color: $light-border-color;
+  font-size: 90px;
+  border-radius: 10px;
   position: relative;
 }
 

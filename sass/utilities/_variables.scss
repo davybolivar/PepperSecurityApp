@@ -131,3 +131,68 @@ ul{
        -o-transition: color .2s, border-color .2s ease-in;
           transition: color .2s, border-color .2s ease-in;
 }
+
+
+@mixin outer-shadow($shadow-color){
+  -webkit-box-shadow: 0px 1px 8px 3px transparentize($shadow-color, .8);
+     -moz-box-shadow: 0px 1px 8px 3px transparentize($shadow-color, .8);
+          box-shadow: 0px 1px 8px 3px transparentize($shadow-color, .8);
+}
+
+@mixin inner-shadow($shadow-color){
+  -webkit-box-shadow: inset -3px 0px 8px 0px transparentize($shadow-color, .8);
+     -moz-box-shadow: inset -3px 0px 8px 0px transparentize($shadow-color, .8);
+          box-shadow: inset -3px 0px 8px 0px transparentize($shadow-color, .8);
+}
+
+
+@mixin depth-button($background-color) {
+  background: $background-color;
+  background: -moz-linear-gradient(top, $background-color 0%, darken($background-color, 4%) 60%, darken($background-color, 5%) 65%, darken($background-color, 6%) 99%, lighten($background-color, 25%) 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, $background-color), color-stop(60%, darken($background-color, 4%)), color-stop(65%, darken($background-color, 6%)), color-stop(99%, darken($background-color, 6%)), color-stop(100%, lighten($background-color, 20%)));
+  background: -webkit-linear-gradient(top, $background-color 0%, darken($background-color, 4%) 60%, darken($background-color, 5%) 60%, darken($background-color, 5%) 99%, lighten($background-color, 25%) 100%);
+  background: -o-linear-gradient(top, $background-color 0%, darken($background-color, 4%) 60%, darken($background-color, 5%) 65%, darken($background-color, 6%) 99%, lighten($background-color, 25%) 100%);
+  background: -ms-linear-gradient(top, $background-color 0%, darken($background-color, 4%) 60%, darken($background-color, 5%) 65%, darken($background-color, 6%) 99%, lighten($background-color, 25%) 100%);
+  background: linear-gradient(to bottom, $background-color 0%, darken($background-color, 4%) 60%, darken($background-color, 5%) 65%, darken($background-color, 6%) 99%, lighten($background-color, 25%) 100%);
+}
+
+
+@mixin gradient-down($color){
+  background: $color;
+  background: -moz-linear-gradient(top, $color 0%, transparentize($color, 1) 85%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, $color), color-stop(85%, transparentize($color, 1)));
+  background: -webkit-linear-gradient(top, $color 0%, transparentize($color, 1) 85%);
+  background: -o-linear-gradient(top, $color 0%, transparentize($color, 1) 85%);
+  background: -ms-linear-gradient(top, $color 0%, transparentize($color, 1) 85%);
+  background: linear-gradient(to bottom, $color 0%, transparentize($color, 1) 85%);
+}
+
+@mixin gradient-up($color){
+  background: $color;
+  background: -moz-linear-gradient(bottom, $color 0%, transparentize($color, 1) 85%);
+  background: -webkit-gradient(left bottom, left top, color-stop(0%, $color), color-stop(85%, transparentize($color, 1)));
+  background: -webkit-linear-gradient(bottom, $color 0%, transparentize($color, 1) 85%);
+  background: -o-linear-gradient(bottom, $color 0%, transparentize($color, 1) 85%);
+  background: -ms-linear-gradient(bottom, $color 0%, transparentize($color, 1) 85%);
+  background: linear-gradient(to top, $color 0%, transparentize($color, 1) 85%);
+}
+
+@mixin gradient-left($color){
+  background: $color;
+  background: -moz-linear-gradient(left, $color 0%, transparentize($color, 1) 85%);
+  background: -webkit-gradient(top left, top right, color-stop(0%, $color), color-stop(85%, transparentize($color, 1)));
+  background: -webkit-linear-gradient(left, $color 0%, transparentize($color, 1) 85%);
+  background: -o-linear-gradient(left, $color 0%, transparentize($color, 1) 85%);
+  background: -ms-linear-gradient(left, $color 0%, transparentize($color, 1) 85%);
+  background: linear-gradient(to right, $color 0%, transparentize($color, 1) 85%);
+}
+
+@mixin gradient-right($color){
+  background: $color;
+  background: -moz-linear-gradient(right, $color 0%, transparentize($color, 1) 85%);
+  background: -webkit-gradient(bottom right, bottom left, color-stop(0%, $color), color-stop(85%, transparentize($color, 1)));
+  background: -webkit-linear-gradient(right, $color 0%, transparentize($color, 1) 85%);
+  background: -o-linear-gradient(right, $color 0%, transparentize($color, 1) 85%);
+  background: -ms-linear-gradient(right, $color 0%, transparentize($color, 1) 85%);
+  background: linear-gradient(to left, $color 0%, transparentize($color, 1) 85%);
+}
