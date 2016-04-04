@@ -22,6 +22,7 @@ $light-invalid-color: lighten($invalid-color, 10%);
 $dark-invalid-color: darken($invalid-color, 10%);
 $global-border-radius: 2px;
 $arrow-color: $theme-color;
+$input-height: 100px;
 
 // General CSS
 .area-container{
@@ -135,6 +136,16 @@ ul{
      -moz-transition: color .2s, border-color .2s ease-in;
        -o-transition: color .2s, border-color .2s ease-in;
           transition: color .2s, border-color .2s ease-in;
+}
+
+.non-selectable{
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* IE/Edge */
+  user-select: none;           /* non-prefixed version, currently
+                                  not supported by any browser */
 }
 
 

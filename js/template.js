@@ -5,7 +5,16 @@ $( window ).ready(function() {
   // navListener();
   sliderArrow();
   touchEffect();
+  toggleSwitch();
 });
+
+function toggleSwitch(){
+  $( ".switch-button" ).click(function(e) {
+    var $parentContainer = $( this ).closest(".input-wrapper");
+    var $radioButton = $parentContainer.find("input[type='radio']");
+    $radioButton.click();
+  });
+}
 
 function touchEffect(){
   $(window).mousedown(function (e) {
