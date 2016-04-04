@@ -17,6 +17,78 @@ html, body{
   flex-direction: column;
 }
 
+// Header
+.header-bar{
+  @extend .border-box;
+  width: 100%;
+  min-height: $common-size;
+  margin-bottom: 30px;
+  padding-left: 50px;
+  padding-right: 50px;
+  background-color: white;
+  position: relative;
+  display: flex;
+
+  &:before{
+    content: "";
+    width: 90%;
+    height: 100%;
+    border-bottom: solid 2px $border-color;
+    position: absolute;
+    top: 0;
+    left: calc(50% - (90%/2));
+    z-index: 3;
+  }
+
+  & .header-section{
+    width: 100%;
+    height: $common-size;
+    position: relative;
+
+    &:nth-child(1){
+      vertical-align: $common-size;
+      vertical-align: middle;
+      pointer-events: none;
+
+      & > span{
+        @extend .center-block-elem;
+        @extend .border-box;
+        height: 100%;
+        color: black;
+        font-family: $softbank-font;
+        font-size: 90px;
+        position: relative;
+
+        &:before{
+          content: "";
+          width: 90px;
+          height: 23px;
+          background-color: #B7BBBE;
+          position: absolute;
+          top: 42px;
+          left: 0;
+        }
+
+        &:after{
+          content: "";
+          width: 90px;
+          height: 23px;
+          background-color: #B7BBBE;
+          position: absolute;
+          bottom: 42px;
+          left: 0;
+        }
+      }
+    }
+    &:nth-child(2){
+      // background-color: gray;
+    }
+    &:nth-child(3){
+      // background-color: lightgray;
+    }
+  }
+}
+
 // Slider content
 .slider{
   width: 100%;
@@ -90,7 +162,7 @@ html, body{
     }
 
     &:after{
-      @include gradient-left($dark-border-color);
+      @include gradient-left(white);
       transform: translateX(-($common-size / 2));
     }
 
@@ -132,7 +204,7 @@ html, body{
     }
 
     &:after{
-      @include gradient-right($dark-border-color);
+      @include gradient-right(white);
       transform: translateX($common-size / 2);
     }
 
@@ -177,9 +249,9 @@ html, body{
 }
 
 // Navigation bar content
-.tab{
+.nav-bar{
   width: 100%;
-  height: $common-size;
+  min-height: $common-size;
   margin-top: 30px;
   margin-bottom: 30px;
   background-color: gray;

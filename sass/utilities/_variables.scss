@@ -1,9 +1,14 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:400,300,700,100);
+@font-face {
+  font-family: 'Heisei';
+  src: url('font/HeiseiMincho.otf'); /* IE9 Compat Modes */
+}
 
 $default-font: "Lato";
+$softbank-font: "Heisei";
 $common-size: 150px;
 $body-min-width: 1000px;
-$theme-color: #006693; // 2nd best option color #b4d35f, #3399ff, #79b9b2
+$theme-color: #8AC3D2; // 2nd best option color #b4d35f, #3399ff, #79b9b2
 $light-theme-color: lighten($theme-color, 10%);
 $light-theme-color-2: lighten($theme-color, 35%);
 $dark-theme-color: darken($theme-color, 10%);
