@@ -121,6 +121,21 @@ input[type="radio"]:checked + .input-container .switch-button {
   input[type="radio"]:checked + .input-container .switch-button:before {
     transform: translateX(80px); }
 
+input[type="text"] {
+  width: 100%;
+  height: 100px;
+  margin: 0;
+  padding: 0;
+  padding-left: 40px;
+  padding-right: 40px;
+  color: #65b0c4;
+  background-color: transparent;
+  font-size: 60px;
+  font-family: "Lato";
+  border: 0;
+  border-bottom: solid 1px #d9d9d9;
+  outline: none; }
+
 #settings-page {
   width: 100%;
   height: 100%;
@@ -472,6 +487,21 @@ input[type="radio"]:checked + .input-container .switch-button {
             -moz-transition: transform .3s ease-in-out;
             -o-transition: transform .3s ease-in-out;
             transition: transform .3s ease-in-out; }
+      .card-form .card-content .input-wrapper input[type="text"] + span {
+        position: absolute;
+        left: 40px;
+        top: calc(50% - (100px / 2));
+        transform: translateY(-100px) translateX(-40px);
+        pointer-events: none;
+        -webkit-transition: transform .3s ease-in-out, color .3s ease-in-out;
+        -moz-transition: transform .3s ease-in-out, color .3s ease-in-out;
+        -o-transition: transform .3s ease-in-out, color .3s ease-in-out;
+        transition: transform .3s ease-in-out, color .3s ease-in-out; }
+      .card-form .card-content .input-wrapper input[type="text"]:invalid {
+        position: relative; }
+        .card-form .card-content .input-wrapper input[type="text"]:invalid + span {
+          color: #65b0c4;
+          transform: translateY(0px); }
 
 .touch-effect {
   width: 100px;
